@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="../stylesheets/main.css">
+
+  </head>
+  <body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    
+    <main class="bg-gray-50 flex pt-5 min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+          <div>
+            <div class="h-20 w-20 my-auto mx-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                <path style="fill:#a0dde6;" d="M256,12.147C233.808,4.327,209.358,0,183.695,0C82.49,0,0.151,67.366,0.151,150.172  c0,44.829,24.773,87.556,66.743,115.933v84.297c0,6.752,4.06,12.837,10.301,15.418c6.129,2.547,13.349,1.212,18.188-3.615  l63.261-63.261c11.78,1.335,19.189-5.829,20.168-14.528c4.605-40.813,35.763-73.762,77.188-91.705  c27.71-12.003,60.002-17.286,92.017-13.716c9.133,1.057,17.398-5.551,18.443-14.695c0.523-4.55,0.779-9.3,0.779-14.127  C367.239,88.357,321.364,35.151,256,12.147z"/>
+                <path style="fill:#80c2af;" d="M367.239,150.172c0,4.828-0.256,9.578-0.779,14.127c-1.046,9.144-9.311,15.751-18.443,14.695  c-32.014-3.571-64.307,1.713-92.017,13.716V12.147C321.364,35.151,367.239,88.357,367.239,150.172z"/>
+                <path style="fill: #c9c9c9;" d="M328.305,144.61c-25.774,0-50.191,4.238-72.305,11.903c-65.831,22.804-111.239,75.998-111.239,138.27  c0,61.815,45.875,115.021,111.239,138.025c22.192,7.82,46.642,12.147,72.305,12.147c8.51,0,16.908-0.467,25.073-1.391  c64.463,64.463,67.255,72.761,81.427,66.866c6.24-2.581,10.301-8.665,10.301-15.418v-84.297  c41.97-28.377,66.743-71.104,66.743-115.933C511.849,213.144,431.223,144.61,328.305,144.61z"/>
+                <path style="fill:#757575;" d="M511.849,294.782c0,44.829-24.773,87.556-66.743,115.933v84.297c0,6.752-4.06,12.837-10.301,15.418  c-14.172,5.896-16.964-2.403-81.427-66.866c-8.165,0.923-16.563,1.39-25.073,1.39c-25.663,0-50.113-4.327-72.305-12.147V156.513  c22.114-7.664,46.531-11.903,72.305-11.903C431.223,144.61,511.849,213.144,511.849,294.782z"/>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+              </svg>
+            </div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-secondary">
+              Login to your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+              Or
+              <a href="/users/signup" class="font-medium text-complementary hover:text-complementary-shadow">
+                register here
+              </a>
+            </p>
+          </div>
+          <form class="mt-8 space-y-6" action="#" method="POST">
+            <input type="hidden" name="remember" value="true">
+            <div class="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label for="email-address" class="sr-only">Email address</label>
+                <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-complementary focus:border-complementary focus:z-10 sm:text-sm" placeholder="Email address">
+              </div>
+              <div>
+                <label for="password" class="sr-only">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-complementary focus:border-complementary focus:z-10 sm:text-sm" placeholder="Password">
+              </div>
+            </div>
+      
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-complementary focus:ring-complementary border-gray-300 rounded">
+                <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                  Remember me
+                </label>
+              </div>
+      
+              <div class="text-sm">
+                <a href="#" class="font-medium text-complementary hover:text-complementary-shadow">
+                  Forgot your password?
+                </a>
+              </div>
+            </div>
+      
+            <div>
+              <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-complementary hover:bg-complementary-shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-complementary">
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <!-- Heroicon name: solid/lock-closed -->
+                  <svg class="h-5 w-5 text-white   group-hover:text-gray-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                Sign in
+              </button>
+            </div>
+          </form>
+        </div>
+    </main>
+    
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script src="../javascripts/main.js"></script>
+
+  </body>
+</html>
