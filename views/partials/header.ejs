@@ -66,10 +66,18 @@
       </div>
       <h1 class="text-lg sm:text-2xl my-auto text-neutral hidden sm:block hover:text-gray-300 "><a href="/">Members only</a></h1>
       <div class=" mr-3 my-auto sm:ml-auto text-sm sm:text-base text-gray-50">
-        <a class="mr-3 sm:mr-7 hover:text-gray-300" href="/users/signup">Register</a>
-        <a href="/users/login" class="hover:text-gray-300"><i class="fa fa-user-o" aria-hidden="true"></i></a>
-        <a href="/users/login" class="hover:text-gray-300 hidden sm:inline-flex sm:ml-1">Login</a>
-        <a href="/users/logout" class="hover:text-gray-300 hidden sm:inline-flex sm:ml-1">Logout</a>  
+
+        <!-- REGISTER, LOGIN, LOGOUT -->
+        <% if (typeof isUser == 'undefined' || isUser == false) { %>
+          <a class="mr-3 sm:mr-7 hover:text-gray-300" href="/users/signup">Register</a>
+          <a href="/users/login" class="hover:text-gray-300"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+          <a href="/users/login" class="hover:text-gray-300 hidden sm:inline-flex sm:ml-1">Login</a>
+        <% } else { %>
+          <a href="/users/logout" class="hover:text-gray-300"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+          <a href="/users/logout" class="hover:text-gray-300 hidden sm:inline-flex sm:ml-1">Logout</a>  
+        <% } %>
+        <!-- END OF REGISTER, LOGIN, LOGOUT -->
+      
       </div>
     </div>
   </nav>

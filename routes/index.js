@@ -1,19 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../lib/authMiddleware');
+var msg = require('../lib/msgMiddleware');
 
 /* GET home page. */
-router.get('/', auth.userStatus, function(req, res, next) {
-  const isUser = req.isUser;
-  const userStatus = req.userStatus;
+router.get('/', auth.userStatus, msg.getMessages, function(req, res, next) {
+  const userStatus = res.locals.userStatus;
+  const allMessages = res.locals.allMessages
   
-  const info = {
+  const data = {
     title:  'Members Only',
     userStatus: userStatus,
-    isUser : isUser,
+    allMessages : allMessages, 
   }
 
-  res.render('pages/index', info);
+  res.render('pages/index', data);
 });
 
 module.exports = router;

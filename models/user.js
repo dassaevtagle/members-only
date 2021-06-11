@@ -11,7 +11,10 @@ const UserSchema = new mongoose.Schema({
       enum: ['user', 'member'],
       default: 'user'
   },
-  admin: Boolean
+  admin: Boolean,
+  messages: [{
+    id: {type: mongoose.Schema.Types.ObjectId, ref: 'Message'}
+  }],
 });
 
 const User = mongoose.model('User', UserSchema);

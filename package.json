@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "build": "webpack",
+    "build--watch": "webpack --watch",
     "start": "nodemon ./bin/www",
     "dev-start": "DEBUG=express:* nodemon ./bin/www"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^4.4.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

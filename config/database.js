@@ -9,4 +9,6 @@ const connection = mongoose.connect(dbStr, {
   useUnifiedTopology: true
 });
 
+mongoose.set('useFindAndModify', false);
+
 module.exports = connection;
