@@ -4161,16 +4161,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
-  _jquery__WEBPACK_IMPORTED_MODULE_1___default()('.deletePost').on('click', function (event) {
+  _jquery__WEBPACK_IMPORTED_MODULE_1___default()('.deletePost').on('click', function (e) {
+    e.preventDefault();
     var id = _jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr('data-id');
     _jquery__WEBPACK_IMPORTED_MODULE_1___default().ajax({
       type: 'DELETE',
-      url: 'members/delete/' + id,
+      url: '/members/delete/' + id,
       success: function success(res) {
-        alert('Deleted!');
+        alert('Deleted!' + res._id);
+        _jquery__WEBPACK_IMPORTED_MODULE_1___default()("div[data-id=message_".concat(id, "]")).remove();
       },
       error: function error(err) {
-        console.log(err);
+        alert(err.responseText);
       }
     });
   });

@@ -3,7 +3,7 @@
 <html>
   <head>
     <%- include('../partials/head'); %>
-    <link rel="stylesheet" href="../stylesheets/main.css">
+    <link rel="stylesheet" href="<%=baseURL%>/stylesheets/main.css">
 
   </head>
   <body>
@@ -63,6 +63,6 @@
     <footer>
         <%- include('../partials/footer'); %>
     </footer>
-      <script src="../javascripts/main.js"></script>  
+    <%- include('../partials/scripts'); %>
   </body>
 </html>

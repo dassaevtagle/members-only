@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../lib/authMiddleware');
-const User = require('../models/user');
 const utils = require('../lib/passwordUtils');
-const { util } = require('webpack');
+const msgRepository = require('../repositories/messageRepository');
+const userRepository = require('../repositories/userRepository');
 
 /* GET Member Page before real member conversion */
-router.get('/pass', function(req, res, next){
-      res.send(`
+router.get('/pricing', function(req, res, next){
+      /* res.send(`
         <h5>Do some stuff</h5>
         <form action = "convert" method = "post">
             <button>Convert into member</button>
         <form>
-      `);
+      `); */
+      res.render('pages/pricing');
 });
 
 /* PUT for member conversion */
@@ -26,24 +27,36 @@ router.post('/convert', auth.userStatus, async function(req, res, next){
     return res.redirect('/users/signup');
   }
 
-    const userId = { _id: res.locals.userId };
-    const update = { userStatus: 'member'};
+  const userId = { _id: res.locals.userId };
+  const update = { userStatus: 'member'};
 
-    User.findOneAndUpdate(userId, update, {new: true}).then((updatedUser) => {
+  userRepository.convertToMember(userId, update)
+    .then((updatedUser)=>{
       const newJwt = utils.issueJWT(updatedUser);
       res.clearCookie('jwt');
       res.cookie('jwt', newJwt)
       res.redirect('/');
-    }).catch((err) => {
+    })
+    .catch((err)=>{
       console.log(err);
       next(err);
     });
-
 });
 
-router.delete('/delete/:id', function(req, res, next){
-  alert('Deleted from router');
-  res.send(200);
+router.delete('/delete/:id', auth.userStatus, function(req, res, next){
+  if (res.locals.isMember == false) res.sendStatus(401); 
+  
+  let id = req.params.id;
+
+  msgRepository.deleteMessage(id)
+    .then((msg)=>{
+      console.log(msg)
+      res.status(200).send(msg);
+    })
+    .catch((err)=>{
+      res.status(500).send(err);
+    });
+
 });
 
 

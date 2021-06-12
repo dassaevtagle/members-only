@@ -14,6 +14,7 @@ var membersRouter = require('./routes/members')
 require('dotenv').config();
 
 var app = express();
+app.locals.baseURL = "http://localhost:3000";
 
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------
