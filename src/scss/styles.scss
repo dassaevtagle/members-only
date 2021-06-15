@@ -1,15 +1,8 @@
-:root {
-  --color-primary: #30c5ff;
-  --color-primary-shadow: #00b7ff;
-  --color-secondary: #2a2d34;
-  --color-complementary: #5c946e;
-  --color-complementary-shadow: #4f805e;
-  --color-neutral: #80c2af;
-  --color-neutral-light: #a0dde6;
+@import './colors';
+@import './message';
+
+[type='text']:focus textarea:focus {
+  --tw-ring-color: none !important;
+  box-shadow: none !important;
+  border-color: none !important;
 }
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-

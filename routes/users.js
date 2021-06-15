@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const utils = require('../lib/passwordUtils');
 const passport = require('passport');
-const auth = require('../lib/authMiddleware');
 const userRepository = require('../repositories/userRepository');
 const msgRepository = require('../repositories/messageRepository');
 
@@ -88,7 +87,7 @@ router.get('/protected', passport.authenticate('jwt', {
 /* POST for new message */
 router.post('/newpost', passport.authenticate('jwt', {
   session: false
-}), auth.userStatus, (req, res, next) => {
+}), async (req, res, next) => {
 
   const newMessage = {
     title: req.body.title,
@@ -97,7 +96,7 @@ router.post('/newpost', passport.authenticate('jwt', {
     text: req.body.text,
   };
 
-  const userId = res.local.userId;
+  const userId = res.locals.userId;
 
   msgRepository.createMessage(newMessage, userId)
     .then((message)=>{

@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var flash = require('connect-flash');
+var auth = require('./lib/authMiddleware');
+
 
 var passport = require('passport')
 
@@ -37,6 +39,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use(auth.userStatus);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/members', membersRouter);

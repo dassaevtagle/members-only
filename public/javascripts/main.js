@@ -4176,6 +4176,46 @@ _jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
       }
     });
   });
+  _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostForm").hide();
+  _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostBtn").click(function () {
+    _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostForm").show();
+    _jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).hide();
+  });
+  _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#closeNewPost").click(function (e) {
+    e.preventDefault();
+    _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostForm").hide();
+    _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostBtn").show();
+  });
+  _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#closeNewPost2").click(function (e) {
+    e.preventDefault();
+    _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostForm").hide();
+    _jquery__WEBPACK_IMPORTED_MODULE_1___default()("#newPostBtn").show();
+  });
+  /* 
+   * Love button for Design it & Code it
+   * http://designitcodeit.com/i/9
+   */
+
+  _jquery__WEBPACK_IMPORTED_MODULE_1___default()('.btn-counter').on('click', function (event, count) {
+    event.preventDefault();
+    var $this = _jquery__WEBPACK_IMPORTED_MODULE_1___default()(this),
+        count = $this.attr('data-count'),
+        active = $this.hasClass('active'),
+        multiple = $this.hasClass('multiple-count'); // First method, allows to add custom function
+    // Use when you want to do an ajax request
+
+    /* if (multiple) {
+    $this.attr('data-count', ++count);
+    // Your code here
+    } else {
+    $this.attr('data-count', active ? --count : ++count).toggleClass('active');
+    // Your code here
+    } */
+    // Second method, use when ... I dunno when but it looks cool and that's why it is here
+
+    (_jquery__WEBPACK_IMPORTED_MODULE_1___default().fn.noop) = (_jquery__WEBPACK_IMPORTED_MODULE_1___default().noop);
+    $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
+  });
 });
 })();
 

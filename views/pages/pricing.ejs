@@ -24,7 +24,7 @@
         <div
           class="border-2 w-full md:w-1/3 md:max-w-none bg-white px-8 md:px-10 py-8 md:py-10 mb-3 mx-auto md:my-6 rounded-md shadow-lg shadow-gray-600 md:flex md:flex-col">
           <div class="w-full flex-grow">
-            <h2 class="text-center font-bold uppercase mb-4">FREE</h2>
+            <h2 class="text-center font-bold uppercase mb-4">FREE USER</h2>
             <h3 class="text-center font-bold text-4xl mb-5">$0/mo</h3>
             <ul class="text-sm px-5 mb-8">
               <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Lorem ipsum</li>
@@ -46,12 +46,16 @@
             </ul>
           </div>
           <div class="w-full">
-            <button
-              class="font-bold bg-white hover:bg-gray-200 text-complementary rounded-md px-10 py-2 transition-colors w-full">Buy
-              Now</button>
+            <form action="payment/member" method="post">
+              <button
+                class="font-bold bg-white hover:bg-gray-200 text-complementary rounded-md px-10 py-2 transition-colors w-full">
+                Buy Now</button>
+            </form>
           </div>
           <div class="absolute top-4 right-4">
-            <div class="border-2 border-complementary text-xs rounded-full bg-white font-bold w-20 mx-auto mb-4 py-1 text-complementary text-center">POPULAR</div>
+            <div
+              class="border-2 border-complementary text-xs rounded-full bg-white font-bold w-20 mx-auto mb-4 py-1 text-complementary text-center">
+              POPULAR</div>
           </div>
         </div>
         <div
@@ -68,9 +72,11 @@
             </ul>
           </div>
           <div class="w-full">
-            <button
-              class="font-bold bg-complementary hover:bg-complementary-shadow hover:text-complementary text-white rounded-md px-10 py-2 transition-colors w-full">Buy
-              Now</button>
+            <form action="payment/admin" method="post">
+              <button
+                class="font-bold bg-complementary hover:bg-complementary-shadow text-white rounded-md px-10 py-2 transition-colors w-full">
+                Buy Now</button>
+            </form>
           </div>
         </div>
       </div>

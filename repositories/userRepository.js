@@ -53,8 +53,23 @@ const convertToMember = (id, update) => {
   });
 }
 
+const convertToAdmin = (id, update) => {
+return new Promise((resolve, reject) => {
+
+    User.findOneAndUpdate(id, update, {
+      new: true
+    }).then((updatedUser) => {
+      resolve(updatedUser);
+    }).catch((err) => {
+      reject(err);
+    });
+
+  });
+};
+
 module.exports = {
   createNewUser,
   getUserByEmail,
-  convertToMember
+  convertToMember,
+  convertToAdmin
 }

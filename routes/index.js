@@ -1,18 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var auth = require('../lib/authMiddleware');
 var msgRepository = require('../repositories/messageRepository');
 
 /* GET home page. */
-router.get('/', auth.userStatus, function(req, res, next) {
+router.get('/', function(req, res, next) {
   const userStatus = res.locals.userStatus;
+  const isAdmin = res.locals.isAdmin;
+  const name = res.locals.name;
 
   msgRepository.getAllMessages()
     .then((messages)=>{
       const data = {
         title:  'Members Only',
         userStatus: userStatus,
-        allMessages : messages, 
+        allMessages : messages,
+        isAdmin: isAdmin,
+        fullName: name,
       }
     
       res.render('pages/index', data);

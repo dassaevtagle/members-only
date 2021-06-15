@@ -6,9 +6,9 @@ const dbStr = process.env.DB_STRING;
 
 const connection = mongoose.connect(dbStr, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
 });
-
-mongoose.set('useFindAndModify', false);
 
 module.exports = connection;

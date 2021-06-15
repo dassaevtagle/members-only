@@ -1,135 +1,142 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <%- include('../partials/head'); %>
-    <link rel="stylesheet" href="<%=baseURL%>/stylesheets/main.css">
-    
-  </head>
-  <body class="bg-gray-50">
-    <header>
-        <%- include('../partials/header'); %>
-    </header>
-    
-    <main>
 
-        <!-- LOGGED OUT NOTIFICATION-->
-        <%  if(typeof flashData !== 'undefined'){ %>
-        <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3" role="alert">
-          <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
-          <p><%= flashData %></p>
+<head>
+  <%- include('../partials/head'); %>
+  <link rel="stylesheet" href="<%=baseURL%>/stylesheets/main.css">
+
+</head>
+
+<body class="bg-gray-50">
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main class="mx-auto w-11/12 max-w-2xl px-4 sm:px-6 py-4 lg:px-8">
+
+    <!-- LOGGED OUT NOTIFICATION-->
+    <%  if(typeof flashData !== 'undefined'){ %>
+    <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3" role="alert">
+      <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path
+          d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+      </svg>
+      <p><%= flashData %></p>
+    </div>
+    <% } %>
+    <!-- END OF LOGGED OUT NOTIFICATION -->
+
+    <!-- NOTIFICATION TO BECOME A MEMBER -->
+    <% if(userStatus === 'user'){ %>
+    <div
+      class="border border-gray-300 mb-4 p-4 lg:flex lg:items-center lg:justify-between shadow-lg rounded-md">
+      <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-xl">
+        <span class="block">Ready to explore more?</span>
+        <span class="block text-complementary ">Become a Premium Member today.</span>
+      </h2>
+      <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+        <div class="inline-flex rounded-md shadow">
+          <a href="members/pricing"
+            class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-complementary hover:bg-complementary-shadow">
+            Upgrade now
+          </a>
         </div>
-        <% } %>
-       <!-- END OF LOGGED OUT NOTIFICATION --> 
-
-        <!-- NOTIFICATION TO BECOME A MEMBER -->
-        <% if(userStatus === 'user'){ %>
-        <div class="max-w-7xl mx-auto mt-5 py-8 px-4 sm:px-6 lg:py-12 lg:px-8 lg:flex lg:items-center lg:justify-between shadow-2xl rounded-md">
-          <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            <span class="block">Ready to explore more?</span>
-            <span class="block text-complementary ">Become a Premium Member today.</span>
-          </h2>
-          <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-            <div class="inline-flex rounded-md shadow">
-              <a href="members/pricing" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-complementary hover:bg-complementary-shadow">
-                Buy now
-              </a>
-            </div>
-            <div class="ml-3 inline-flex rounded-md shadow">
-              <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-complementary bg-white hover:bg-indigo-50">
-                Learn more
-              </a>
-            </div>
-          </div>
+        <div class="ml-3 inline-flex rounded-md shadow">
+          <a href="#"
+            class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-complementary bg-white hover:bg-indigo-50">
+            Learn more
+          </a>
         </div>
-        <% } %>
-        <!-- END OF NOTIFICATION -->
+      </div>
+    </div>
+    <% } %>
+    <!-- END OF NOTIFICATION -->
 
-        <% if(['user', 'member'].indexOf(userStatus) != -1){ %>
-          <!-- WRITE NEW POST -->
-        <div class="heading text-center font-bold text-2xl m-5 text-gray-800">New Post</div>
-        <form method="POST" action="users/newpost" autocomplete="off">
-          <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl max-w-2xl rounded-md">
-            <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none rounded-md" 
-                  spellcheck="false" placeholder="Title" type="text" name="title">
-            <textarea class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none rounded-md" 
-                      spellcheck="false" placeholder="Describe everything about this post here" name="text"></textarea>
-            
-            <!-- icons -->
-            <div class="icons flex text-gray-500 m-2">
-              <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-              <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
-              <div class="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
+    <% if(['user', 'member'].indexOf(userStatus) != -1){ %>
+
+    <button id="newPostBtn" class="btn bg-neutral hover:bg-neutral-shadow border border-gray-300  text-white rounded-md max-w-md sm:max-w-sm sm:w-28 mx-auto sm:ml-4 py-2 px-3">New Post &nbsp;+</button>
+    <!-- WRITE NEW POST --> 
+    <form id="newPostForm" method="POST" action="users/newpost" autocomplete="off" style="display: none;">
+      <div
+        class="editor mt-2 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl rounded-md">
+        <div class="heading max-w-md mb-4 font-bold text-2xl mx-auto text-gray-800">New Post
+          <button id="closeNewPost" class="btn btn absolute sm:ml-44 ml-10 text-gray-600"><i class="fa fa-times-circle"></i></button>
+        </div>
+        
+        <input
+          class="title bg-gray-100 border border-gray-300 focus:border-2 focus:border-complementary p-2 mb-4 rounded-md"
+          spellcheck="false" placeholder="Title" type="text" name="title">
+        <textarea class="description bg-gray-100 sec p-3 h-60 border border-gray-300 focus:border-2 focus:border-complementary outline-none rounded-md"
+          spellcheck="false" placeholder="Describe everything about this post here" name="text"></textarea>
+
+        <!-- buttons -->
+        <div class="buttons flex mt-4">
+          <button
+          id="closeNewPost2" class="btn border border-gray-300 hover:bg-gray-200 p-1 px-4 font-semibold cursor-pointer text-complementary ml-auto rounded-md">
+            Cancel
+          </button>
+          <input
+            class="btn border p-1 px-4 font-semibold cursor-pointer text-white ml-2 bg-complementary hover:bg-complementary-shadow rounded-md"
+            type="submit" formmethod="post" value="Post">
+        </div>
+      </div>
+    </form>
+
+    <!-- END OF WRITE NEW POST -->
+    <% } %>
+
+    <!-- POSTS CARDS-->
+    <div class="py-4">
+      <% for(let i=allMessages.length-1; i>=0; i--) { %>
+      <% let message = allMessages[i]; %>
+      <div class="flex shadow-lg rounded-lg mb-2 text-gray-800 border border-gray-300 "
+        data-id="message_<%= message._id %>">
+        <!--horizontal margin is just for display-->
+        <div class="flex items-start px-4 py-6">
+          <div class="">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-semibold text-gray-900 -mt-1"><%= message.title %> </h2>
+              <small class="text-sm text-gray-700">22h ago</small>
             </div>
-            <!-- buttons -->
-            <div class="buttons flex">
-              <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">Cancel</div>
-              <input class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 rounded-md" type="submit" formmethod="post" value="Post">
-            </div>
-          </div>
-        </form>
-
-        <!-- END OF WRITE NEW POST -->
-        <% } %>
-
-        <!-- POSTS CARDS-->
-        <div class="py-4">
-            <% for(let i=allMessages.length-1; i>=0; i--) { %>
-              <% let message = allMessages[i]; %>
-              <div class="flex shadow-lg rounded-lg my-4 mx-4 md:mx-auto max-w-md md:max-w-2xl" data-id="message_<%= message._id %>"><!--horizontal margin is just for display-->
-                <div class="flex items-start px-4 py-6">
-                  <img class="w-12 h-12 rounded-full object-cover mr-4 shadow" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="avatar">
-                  <div class="">
-                      <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-semibold text-gray-900 -mt-1"><%= message.title %> </h2>
-                        <small class="text-sm text-gray-700">22h ago</small>
-                      </div>
-                      <p class="text-gray-700 text-sm">Aquí va ir el autor </p>
-                      <p class="mt-3 text-gray-700">
-                        <%= message.text %>
-                      </p>
-                      <div class="mt-4 flex items-center">
-                        <div class="flex mr-2 text-gray-700 text-sm mr-3">
-                            <svg fill="none" viewBox="0 0 24 24"  class="w-4 h-4 mr-1" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                            <span>12</span>
-                        </div>
-                        <div class="flex mr-2 text-gray-700 text-sm mr-8">
-                            <svg fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-1" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
-                            </svg>
-                            <span>8</span>
-                        </div>
-                        <div class="flex mr-2 text-gray-700 text-sm mr-4">
-                            <svg fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-1" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-                            </svg>
-                            <span>share</span>
-                        </div>
-                      </div>  
-                  </div>
-                  <% if(userStatus == 'member') {%>
-                    <div class="mb-auto ml-4">
-                      <button class="deletePost rounded-md bg-white max-h-0.5 text-sm px-2 py-1 focus:outline-none" data-id="<%= message._id %>">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="-40 0 427 427.00131" width="20">
-                          <path d="m232.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
-                          <path d="m114.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/><path d="m28.398438 127.121094v246.378906c0 14.5625 5.339843 28.238281 14.667968 38.050781 9.285156 9.839844 22.207032 15.425781 35.730469 15.449219h189.203125c13.527344-.023438 26.449219-5.609375 35.730469-15.449219 9.328125-9.8125 14.667969-23.488281 14.667969-38.050781v-246.378906c18.542968-4.921875 30.558593-22.835938 28.078124-41.863282-2.484374-19.023437-18.691406-33.253906-37.878906-33.257812h-51.199218v-12.5c.058593-10.511719-4.097657-20.605469-11.539063-28.03125-7.441406-7.421875-17.550781-11.5546875-28.0625-11.46875h-88.796875c-10.511719-.0859375-20.621094 4.046875-28.0625 11.46875-7.441406 7.425781-11.597656 17.519531-11.539062 28.03125v12.5h-51.199219c-19.1875.003906-35.394531 14.234375-37.878907 33.257812-2.480468 19.027344 9.535157 36.941407 28.078126 41.863282zm239.601562 279.878906h-189.203125c-17.097656 0-30.398437-14.6875-30.398437-33.5v-245.5h250v245.5c0 18.8125-13.300782 33.5-30.398438 33.5zm-158.601562-367.5c-.066407-5.207031 1.980468-10.21875 5.675781-13.894531 3.691406-3.675781 8.714843-5.695313 13.925781-5.605469h88.796875c5.210937-.089844 10.234375 1.929688 13.925781 5.605469 3.695313 3.671875 5.742188 8.6875 5.675782 13.894531v12.5h-128zm-71.199219 32.5h270.398437c9.941406 0 18 8.058594 18 18s-8.058594 18-18 18h-270.398437c-9.941407 0-18-8.058594-18-18s8.058593-18 18-18zm0 0"/><path d="m173.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
-                        </svg>
-                      </button>
-                    </div>
-                  <% } %>
-                </div>
+            <p class="text-gray-700 text-sm">Aquí va ir el autor </p>
+            <p class="mt-3 text-gray-700">
+              <%= message.text %>
+            </p>
+            <div class="mt-4 flex items-center">
+              <div class="flex mr-2 text-gray-700 text-sm">
+                <a href="#" title="Love it" class="button btn-counter" data-count="0"><span>&#x2764;</span></a>
               </div>
-            <% } %>
+            </div>
+          </div>
+          <% if(isAdmin) {%>
+          <div class="mb-auto ml-4">
+            <button class="deletePost rounded-md bg-white max-h-0.5 text-sm px-2 py-1 focus:outline-none"
+              data-id="<%= message._id %>">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="-40 0 427 427.00131" width="20">
+                <path
+                  d="m232.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0" />
+                <path
+                  d="m114.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0" />
+                <path
+                  d="m28.398438 127.121094v246.378906c0 14.5625 5.339843 28.238281 14.667968 38.050781 9.285156 9.839844 22.207032 15.425781 35.730469 15.449219h189.203125c13.527344-.023438 26.449219-5.609375 35.730469-15.449219 9.328125-9.8125 14.667969-23.488281 14.667969-38.050781v-246.378906c18.542968-4.921875 30.558593-22.835938 28.078124-41.863282-2.484374-19.023437-18.691406-33.253906-37.878906-33.257812h-51.199218v-12.5c.058593-10.511719-4.097657-20.605469-11.539063-28.03125-7.441406-7.421875-17.550781-11.5546875-28.0625-11.46875h-88.796875c-10.511719-.0859375-20.621094 4.046875-28.0625 11.46875-7.441406 7.425781-11.597656 17.519531-11.539062 28.03125v12.5h-51.199219c-19.1875.003906-35.394531 14.234375-37.878907 33.257812-2.480468 19.027344 9.535157 36.941407 28.078126 41.863282zm239.601562 279.878906h-189.203125c-17.097656 0-30.398437-14.6875-30.398437-33.5v-245.5h250v245.5c0 18.8125-13.300782 33.5-30.398438 33.5zm-158.601562-367.5c-.066407-5.207031 1.980468-10.21875 5.675781-13.894531 3.691406-3.675781 8.714843-5.695313 13.925781-5.605469h88.796875c5.210937-.089844 10.234375 1.929688 13.925781 5.605469 3.695313 3.671875 5.742188 8.6875 5.675782 13.894531v12.5h-128zm-71.199219 32.5h270.398437c9.941406 0 18 8.058594 18 18s-8.058594 18-18 18h-270.398437c-9.941407 0-18-8.058594-18-18s8.058593-18 18-18zm0 0" />
+                <path
+                  d="m173.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0" />
+              </svg>
+            </button>
+          </div>
+          <% } %>
         </div>
-        <!-- END OF POSTS CARDS -->
-    </main>
-    
-    <footer>
-        <%- include('../partials/footer'); %>
-    </footer>
-    <%- include('../partials/scripts'); %>
-  </body>
+      </div>
+      <% } %>
+    </div>
+    <!-- END OF POSTS CARDS -->
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+  <%- include('../partials/scripts'); %>
+</body>
+
 </html>

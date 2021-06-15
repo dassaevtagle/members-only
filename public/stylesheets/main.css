@@ -33062,6 +33062,105 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+/*
+ * Basic button style
+ */
+
+.btn-counter {
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) inset;
+  border-radius: 3px;
+  border: 1px solid;
+  display: inline-block;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 8px;
+  position: relative;
+  font-size: 12px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-counter {
+  margin-right: 39px;
+}
+
+.btn-counter:after,
+.btn-counter:hover:after {
+  text-shadow: none;
+}
+
+.btn-counter:after {
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  background-color: #eee;
+  padding: 0 8px;
+  color: #777;
+  content: attr(data-count);
+  left: 100%;
+  margin-left: 8px;
+  margin-right: -13px;
+  position: absolute;
+  top: -1px;
+}
+
+.btn-counter:before {
+  transform: rotate(45deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476, sizingMethod='auto expand');
+  background-color: #eee;
+  border: 1px solid #d3d3d3;
+  border-right: 0;
+  border-top: 0;
+  content: '';
+  position: absolute;
+  right: -13px;
+  top: 5px;
+  height: 6px;
+  width: 6px;
+  z-index: 1;
+  zoom: 1;
+}
+
+/*
+ * Custom styles
+ */
+
+.button {
+  background-color: #dbdbdb;
+  color: #666;
+  border: none;
+}
+
+.button:hover,
+.button.active {
+  text-shadow: 0 1px 0 #a99594;
+  background-color: #ff4e4e;
+  border: none;
+}
+
+.button:active {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
+.button span {
+  color: #f64136;
+}
+
+.button:hover, .button:hover span,
+.button.active, .button.active span {
+  color: #eeeeee;
+}
+
+.button:active span {
+  color: #b12f27;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+[type='text']:focus textarea:focus {
+  --tw-ring-color: none !important;
+  box-shadow: none !important;
+  border-color: none !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
